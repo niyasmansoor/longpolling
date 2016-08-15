@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Long Polling Sample Application</title>
+<script src="js/jquery.js" />
+</head>
+<body>
+	<h3>
+		<center>Long Polling Client</center><br/><br/>
+		
+		<div id="longpollingoutput" align="center"></div>
+	</h3>	
+
+	<script>
+            var output = document.getElementById('longpollingoutput');
+            (function poll() {
+                $.ajax({url: "http://localhost:8080/longpolling/poll", success: function(data) {
+                        output.innerHTML = data;
+                    }, dataType: "text", complete: poll, timeout: 30000});
+            })();
+        </script>
+</body>
+</html>
